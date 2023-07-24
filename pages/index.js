@@ -1,29 +1,35 @@
-import Link from 'next/link';
+
 import { getPosts } from '../utils/mdx-utils';
 import moment from 'moment';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import Layout, { GradientBackground } from '../components/Layout';
-import ArrowIcon from '../components/ArrowIcon';
+
 import { getGlobalData } from '../utils/global-data';
-import SEO from '../components/SEO';
 import React, { useState, useEffect } from 'react'
 
-export default function Index({ posts, globalData }) {
+export default function Index() {
 
-    const [day, setDay] = useState(0);
-    const [hour, setHour] = useState(0);
-    const [minute, setMinute] = useState(0);
-    const [seconde, setSeconde] = useState(0);
-
+    const [day, setDay] = useState(42);
+    const [hour, setHour] = useState(42);
+    const [minute, setMinute] = useState(42);
+    const [seconde, setSeconde] = useState(42);
 
     useEffect(() => {
-        console.log('tototo')
 
-        return () => {
-            false;
-        }
-    })
+        setInterval(() => {
+
+            const now = moment.utc()
+            const releaseDate = moment('2023-10-02T19:41:20Z'); // for example
+
+            setDay( releaseDate.diff(now, 'days') );
+            setHour( 60 - parseInt(new Date().getHours()) );
+            setMinute(60 - parseInt(new Date().getMinutes()) );
+            setSeconde( 60 - parseInt(new Date().getSeconds()) );
+
+        }, 500)
+
+
+    }, [])
+
+
   return (
 
           <div className="main">
