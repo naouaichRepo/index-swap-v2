@@ -178,3 +178,43 @@ body .main #content section p.timedescription {
   position: relative;
   top: 0px;
 }
+
+@-webkit-keyframes animationgradienttitle {
+  0% {
+    background-position: 0 1600px;
+  }
+  100% {
+    background-position: 1600px 0;
+  }
+}
+@keyframes animationgradienttitle {
+  0% {
+    background-position: 0 1600px;
+  }
+  100% {
+    background-position: 1600px 0;
+  }
+}
+
+
+.text-animated {
+  //font-family: "Scope One", serif;
+  //font-size: 3em;
+  color: #fc3735;
+  background: -webkit-linear-gradient(left, #F57170, #10DDC2, #F57170);
+  background-size: 1600px 200px;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-animation-duration: 7s;
+  animation-duration: 7s;
+  -webkit-animation-name: animationgradienttitle;
+  animation-name: animationgradienttitle;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.text-animated:hover {
+  opacity: 0.7;
+}
