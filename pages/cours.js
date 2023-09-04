@@ -5,6 +5,9 @@ import moment from 'moment';
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 
+import Link from 'next/link'
+
+
 export default function Index() {
 
     const [courLinks, setCourLinks] = useState([]);
@@ -75,7 +78,7 @@ export default function Index() {
                     
                     {
                         dateLimitReached && courLinks.length > 0 ? 
-                            (courLinks.map(cour => <a href={`/${cour}.pdf`}> <p style={{ fontSize: "14px", margin: "1px" }}>{cour}</p> </a>))
+                            (courLinks.map(cour => <Link href={`/${cour}.pdf`} key={cour}> <p style={{ fontSize: "14px", margin: "1px" }}>{cour}</p> </Link>))
                             :
                             <p style={{ fontSize: "18px", margin: "1px" }}>Les cours seront disponible à partir de la rentré</p>
                     }
@@ -100,7 +103,7 @@ export default function Index() {
 
                   <section>
                       <br/><br/><br/>
-                      <a href="/" style={{ textDecoration: "underline" }}>{"Retour"}</a>
+                      <Link href="/" style={{ textDecoration: "underline" }}>{"Retour"}</Link>
                   </section>
 
               </div>

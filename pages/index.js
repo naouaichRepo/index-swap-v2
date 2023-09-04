@@ -4,6 +4,7 @@ import moment from 'moment';
 
 import { getGlobalData } from '../utils/global-data';
 import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
 
 export default function Index() {
 
@@ -58,12 +59,12 @@ export default function Index() {
                       </ul>
                   </section>
                   <section>
-                  <p>Candidater et <a className="text-animated" href="https://calendly.com/naim-aouaichia/30min" rel="noreferrer" target="_blank">obtenez votre place pour la prochaine rentré</a></p>
+                  <p>Candidater et <Link className="text-animated" href="https://calendly.com/naim-aouaichia/30min" rel="noreferrer" target="_blank">obtenez votre place pour la prochaine rentré</Link></p>
                   </section>
 
                   <section>
                       <br/><br/><br/>
-                      <a href="/cours" style={{ textDecoration: "underline" }}>{"Acces au cours"}</a>
+                      <Link href="/cours" style={{ textDecoration: "underline" }}>{"Acces au cours"}</Link>
                   </section>
 
 
