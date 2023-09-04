@@ -59,7 +59,7 @@ export default function Index() {
                       </ul>
                   </section>
                   <section>
-                  <p>Candidater et <Link className="text-animated" href="https://calendly.com/naim-aouaichia/30min" rel="noreferrer" target="_blank">obtenez votre place pour la prochaine rentré</Link></p>
+                  <p>Candidater et <a className="text-animated" href="https://calendly.com/naim-aouaichia/30min" rel="noreferrer" target="_blank">obtenez votre place pour la prochaine rentré</a></p>
                   </section>
 
                   <section>

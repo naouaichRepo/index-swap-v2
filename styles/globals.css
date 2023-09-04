@@ -198,8 +198,6 @@ body .main #content section p.timedescription {
 
 
 .text-animated {
-  //font-family: "Scope One", serif;
-  //font-size: 3em;
   color: #fc3735;
   background: -webkit-linear-gradient(left, #F57170, #10DDC2, #F57170);
   background-size: 1600px 200px;
