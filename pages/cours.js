@@ -1,12 +1,22 @@
 
-import { getPosts } from '../utils/mdx-utils';
 import moment from 'moment';
 
-import { getGlobalData } from '../utils/global-data';
+
 import React, { useState, useEffect } from 'react'
+import axios from 'axios';
 
 export default function Index() {
 
+    const [courLinks, setCourLinks] = useState([]);
+    const [hasCalledCours, setHasCalledCours] = useState(false);
+
+    const timestamp = Date.now().toString()
+    const timestampNowFormatted = timestamp.substring(0, timestamp.length - 3);
+
+    const limitDate = 1696362982;
+
+    const dateLimitReached = timestampNowFormatted >= limitDate;
+    
     const [day, setDay] = useState(42);
     const [hour, setHour] = useState(42);
     const [minute, setMinute] = useState(42);
@@ -30,17 +40,47 @@ export default function Index() {
     }, [])
 
 
+    useEffect(async () => {
+        
+        let i = 0;
+
+        while (i < 100) {
+            try {
+                const response = await axios.get(`/jour${i}.pdf`)
+                if(response.status == 200){
+                    setCourLinks(oldArray => [...oldArray, `jour${i}`]);
+                    setHasCalledCours(true);
+                }
+            } catch (err) {
+                setHasCalledCours(true);
+                break;
+            }
+            i++;
+        }
+        
+    }, [])
+
+
+
   return (
 
           <div className="main">
               <div id='content'>
+
                   <div className='title'>
-                      <span>CYBER WITH LOVE</span>
+                      <span>Liste des cours</span>
                   </div>
-                  <br/>
-                  <p>école de cyber sécurité</p>
-                  <br/>
-                  <p style={{ fontSize: "14px" }}>Limite avant inscription</p>
+
+                  <br/><br/>
+                    
+                    {
+                        dateLimitReached && courLinks.length > 0 ? 
+                            (courLinks.map(cour => <a href={`/${cour}.pdf`}> <p style={{ fontSize: "14px", margin: "1px" }}>{cour}</p> </a>))
+                            :
+                            <p style={{ fontSize: "18px", margin: "1px" }}>Les cours seront disponible à partir de la rentré</p>
+                    }
+                    <br/><br/>
+                    <p style={{ fontSize: "11px" }}>Revenez dans</p>
                   <section>
                       <ul id="countdown">
                           <li><span className="days timenumbers">{day}</span>
@@ -57,15 +97,11 @@ export default function Index() {
                           </li>
                       </ul>
                   </section>
-                  <section>
-                  <p>Candidater et <a className="text-animated" href="https://calendly.com/naim-aouaichia/30min" rel="noreferrer" target="_blank">obtenez votre place pour la prochaine rentré</a></p>
-                  </section>
 
                   <section>
                       <br/><br/><br/>
-                      <a href="/cours" style={{ textDecoration: "underline" }}>{"Acces au cours"}</a>
+                      <a href="/" style={{ textDecoration: "underline" }}>{"Retour"}</a>
                   </section>
-
 
               </div>
 
@@ -74,9 +110,4 @@ export default function Index() {
   );
 }
 
-export function getStaticProps() {
-  const posts = getPosts();
-  const globalData = getGlobalData();
 
-  return { props: { posts, globalData } };
-}
